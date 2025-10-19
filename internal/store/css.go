@@ -1,6 +1,5 @@
 package store
 
-
 var CriticalCSS = `
 <style>
 :root {
@@ -21,15 +20,15 @@ var CriticalCSS = `
   --color-outline-strong: #a3a3a3;
 
   /* Dark Theme Colors (Matched to the website) */
-  --color-surface-dark: #0a0b0a; /* Main dark background */
-  --color-surface-dark-alt: #0a0b0a; /* Slightly lighter surface */
-  --color-on-surface-dark: #efe7d2; /* Primary text color */
+  --color-surface-dark: #0D0C14; /* Main dark background */
+  --color-surface-dark-alt: #1a1a1a; /* Slightly lighter surface */
+  --color-on-surface-dark: #d1d1d1; /* Primary text color */
   --color-on-surface-dark-strong: #ffffff; /* Stronger text color */
-  --color-primary-dark: #a3e635; /* The website's vibrant lime green */
+  --color-primary-dark: #6366F1; /* The website's vibrant lime green */
   --color-on-primary-dark: #0a0b0a; /* Text on primary buttons is black */
-  --color-secondary-dark: #a3a3a3; /* A neutral gray for secondary elements */
+  --color-secondary-dark: #3B82F6; /* A neutral gray for secondary elements */
   --color-on-secondary-dark: #0a0b0a;
-  --color-outline-dark: #404040; /* Subtle borders */
+  --color-outline-dark: #2a2a2a; /* Subtle borders */
   --color-outline-dark-strong: #737373; /* Stronger borders */
 
   /* Shared Colors */

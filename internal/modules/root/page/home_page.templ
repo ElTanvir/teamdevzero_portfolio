@@ -1,16 +1,220 @@
 package homepage
 
-import (
-	"portfolioed/internal/modules/root/components"
-	"portfolioed/ui"
-)
+import "portfolioed/ui"
 
 templ HomePage() {
 	@ui.BaseComponent("", "HomePage", true) {
-		// @ui.CurtainAnimation()
-		<div class="flex flex-col lg:flex-row flex-auto min-h-auto lg:min-h-screen lg:max-h-screen p-4 gap-2.5">
-			@components.HeroSection()
-			@components.MenuSection()
-		</div>
+		<main class="relative z-10">
+			<!-- HOME PAGE -->
+			<div
+				x-show="currentPage === 'home'"
+				class="page-container"
+				x-transition:enter="transition ease-out duration-700"
+				x-transition:enter-start="opacity-0 rotate-y-90"
+				x-transition:enter-end="opacity-100 rotate-y-0"
+				x-transition:leave="transition ease-in duration-500"
+				x-transition:leave-start="opacity-100 rotate-y-0"
+				x-transition:leave-end="opacity-0 -rotate-y-90"
+			>
+				<div class="flex-grow flex flex-col items-center justify-center">
+					<div class="text-center w-full max-w-4xl mx-auto px-4 mb-16">
+						<h1 class="text-5xl md:text-7xl lg:text-8xl font-black mb-6 leading-tight tracking-tighter">
+							We Build <span class="gradient-text">Digital</span> Experiences
+						</h1>
+						<p class="max-w-2xl mx-auto text-lg md:text-xl text-on-surface-dark">
+							From sleek Flutter apps to robust Golang backends, we are the dedicated partner you need to bring your vision to life.
+						</p>
+					</div>
+					<!-- New Foreground Ticker -->
+					<div class="w-full">
+						<div class="foreground-ticker-wrapper">
+							<div class="foreground-ticker">
+								<div class="ticker-track">
+									<template x-for="k in 2" :key="k">
+										<div class="flex items-center">
+											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientA" alt="Client A" class="ticker-item"/>
+											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientB" alt="Client B" class="ticker-item"/>
+											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientC" alt="Client C" class="ticker-item"/>
+											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientD" alt="Client D" class="ticker-item"/>
+											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientE" alt="Client E" class="ticker-item"/>
+										</div>
+									</template>
+								</div>
+							</div>
+						</div>
+					</div>
+					<a href="#" @click.prevent="currentPage = 'contact'" class="cta-button px-10 py-4 text-lg mt-16">
+						<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
+						<span class="cta-button-text">Start Your Project</span>
+					</a>
+				</div>
+			</div>
+			<!-- SERVICES SLIDER -->
+			<div
+				x-show="currentPage === 'services'"
+				class="page-container"
+				x-data="{ 
+                currentSlide: 0, 
+                services: [
+                    { title: 'Mobile Apps', desc: 'Stunning, high-performance cross-platform apps built with Flutter.', tech: 'Flutter' },
+                    { title: 'Frontend', desc: 'Modern, responsive, and blazing-fast websites for an optimal user experience.', tech: 'Next.js, React, Go+Templ' },
+                    { title: 'Backend', desc: 'Scalable, secure, and efficient server-side solutions for your applications.', tech: 'Golang, Node.js, Laravel' },
+                    { title: 'WordPress', desc: 'Custom themes, plugins, and full website development on the world\'s most popular CMS.', tech: 'WordPress' }
+                ],
+                autoplay() {
+                    let timer = setInterval(() => {
+                        this.currentSlide = (this.currentSlide + 1) % this.services.length;
+                    }, 5000);
+                    $watch('currentSlide', () => {
+                        clearInterval(timer);
+                        timer = setInterval(() => { this.currentSlide = (this.currentSlide + 1) % this.services.length; }, 5000);
+                    });
+                }
+             }"
+				x-init="autoplay()"
+				x-transition:enter="transition ease-out duration-700"
+				x-transition:enter-start="opacity-0 rotate-y-90"
+				x-transition:enter-end="opacity-100 rotate-y-0"
+				x-transition:leave="transition ease-in duration-500"
+				x-transition:leave-start="opacity-100 rotate-y-0"
+				x-transition:leave-end="opacity-0 -rotate-y-90"
+			>
+				<template x-for="(service, index) in services" :key="index">
+					<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+						<div class="text-center max-w-3xl">
+							<h2 class="text-4xl md:text-6xl font-black mb-6" x-text="service.title"></h2>
+							<p class="text-lg md:text-xl mb-6 text-on-surface-dark" x-text="service.desc"></p>
+							<span class="inline-block bg-primary-dark/20 text-primary-dark px-4 py-2 rounded-full font-bold" x-text="service.tech"></span>
+						</div>
+					</div>
+				</template>
+				<div class="tab-nav">
+					<template x-for="(service, index) in services" :key="index">
+						<button @click="currentSlide = index" class="tab-nav-item" :class="{'active': currentSlide === index}">
+							<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
+							<span x-text="service.title"></span>
+						</button>
+					</template>
+				</div>
+			</div>
+			<!-- TEAM SLIDER -->
+			<div
+				x-show="currentPage === 'team'"
+				class="page-container"
+				x-data="{ 
+                currentSlide: 0, 
+                team: [
+                    { name: 'Alex Johnson', title: 'Lead Go/Flutter Developer', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=A' },
+                    { name: 'Jane Doe', title: 'Senior Frontend Engineer', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=J' },
+                    { name: 'Sam Wilson', title: 'Backend Specialist', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=S' }
+                ],
+                autoplay() {
+                    let timer = setInterval(() => {
+                        this.currentSlide = (this.currentSlide + 1) % this.team.length;
+                    }, 5000);
+                    $watch('currentSlide', () => {
+                        clearInterval(timer);
+                        timer = setInterval(() => { this.currentSlide = (this.currentSlide + 1) % this.team.length; }, 5000);
+                    });
+                }
+             }"
+				x-init="autoplay()"
+				x-transition:enter="transition ease-out duration-700"
+				x-transition:enter-start="opacity-0 rotate-y-90"
+				x-transition:enter-end="opacity-100 rotate-y-0"
+				x-transition:leave="transition ease-in duration-500"
+				x-transition:leave-start="opacity-100 rotate-y-0"
+				x-transition:leave-end="opacity-0 -rotate-y-90"
+			>
+				<template x-for="(member, index) in team" :key="index">
+					<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+						<div class="text-center">
+							<img :src="member.img" :alt="member.name" class="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto mb-8 border-4 border-outline-dark shadow-2xl"/>
+							<h2 class="text-4xl md:text-5xl font-black" x-text="member.name"></h2>
+							<p class="text-xl text-primary-dark" x-text="member.title"></p>
+						</div>
+					</div>
+				</template>
+				<div class="tab-nav">
+					<template x-for="(member, index) in team" :key="index">
+						<button @click="currentSlide = index" class="tab-nav-item" :class="{'active': currentSlide === index}">
+							<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
+							<span x-text="member.name"></span>
+						</button>
+					</template>
+				</div>
+			</div>
+			<!-- WORK SLIDER -->
+			<div
+				x-show="currentPage === 'work'"
+				class="page-container"
+				x-data="{ 
+                currentSlide: 0, 
+                projects: [
+                    { name: 'Fintech App', desc: 'A secure Flutter application for personal finance management.', tech: 'Flutter & Go', img: 'https://placehold.co/800x600/111111/ffffff?text=Project+One' },
+                    { name: 'E-commerce', desc: 'A high-traffic online store built with Next.js for superior performance.', tech: 'Next.js & Node.js', img: 'https://placehold.co/800x600/111111/ffffff?text=Project+Two' }
+                ],
+                autoplay() {
+                    let timer = setInterval(() => {
+                        this.currentSlide = (this.currentSlide + 1) % this.projects.length;
+                    }, 5000);
+                    $watch('currentSlide', () => {
+                        clearInterval(timer);
+                        timer = setInterval(() => { this.currentSlide = (this.currentSlide + 1) % this.projects.length; }, 5000);
+                    });
+                }
+             }"
+				x-init="autoplay()"
+				x-transition:enter="transition ease-out duration-700"
+				x-transition:enter-start="opacity-0 rotate-y-90"
+				x-transition:enter-end="opacity-100 rotate-y-0"
+				x-transition:leave="transition ease-in duration-500"
+				x-transition:leave-start="opacity-100 rotate-y-0"
+				x-transition:leave-end="opacity-0 -rotate-y-90"
+			>
+				<template x-for="(project, index) in projects" :key="index">
+					<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+						<div class="grid lg:grid-cols-2 gap-12 items-center max-w-6xl">
+							<div class="text-center lg:text-left">
+								<h2 class="text-4xl md:text-6xl font-black mb-6" x-text="project.name"></h2>
+								<p class="text-lg md:text-xl mb-6 text-on-surface-dark" x-text="project.desc"></p>
+								<span class="inline-block bg-primary-dark/20 text-primary-dark px-4 py-2 rounded-full font-bold" x-text="project.tech"></span>
+							</div>
+							<img :src="project.img" :alt="project.name" class="rounded-lg shadow-2xl border border-outline-dark"/>
+						</div>
+					</div>
+				</template>
+				<div class="tab-nav">
+					<template x-for="(project, index) in projects" :key="index">
+						<button @click="currentSlide = index" class="tab-nav-item" :class="{'active': currentSlide === index}">
+							<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
+							<span x-text="project.name"></span>
+						</button>
+					</template>
+				</div>
+			</div>
+			<!-- CONTACT PAGE -->
+			<div
+				x-show="currentPage === 'contact'"
+				class="page-container"
+				x-transition:enter="transition ease-out duration-700"
+				x-transition:enter-start="opacity-0 rotate-y-90"
+				x-transition:enter-end="opacity-100 rotate-y-0"
+				x-transition:leave="transition ease-in duration-500"
+				x-transition:leave-start="opacity-100 rotate-y-0"
+				x-transition:leave-end="opacity-0 -rotate-y-90"
+			>
+				<div class="flex-grow flex items-center justify-center text-center px-4">
+					<div class="max-w-3xl">
+						<h2 class="text-5xl md:text-7xl font-black">Have a project in mind?</h2>
+						<p class="text-lg mt-4 mb-8 text-on-surface-dark">Let's build something amazing together. Reach out and we'll get back to you within 24 hours.</p>
+						<a href="mailto:contact@teamdevzero.com" class="cta-button px-12 py-5 text-xl inline-block">
+							<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
+							<span class="cta-button-text">contact@teamdevzero.com</span>
+						</a>
+					</div>
+				</div>
+			</div>
+		</main>
 	}
 }

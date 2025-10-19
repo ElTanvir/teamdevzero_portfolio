@@ -13,7 +13,9 @@ templ BaseComponent(headContent string, title string, showHeader bool) {
 			<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
 			<meta name="view-transition" content="same-origin"/>
 			<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin/>
+			<link rel="preconnect" href="https://fonts.googleapis.com"/>
 			<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono&display=swap" rel="stylesheet"/>
 			<!-- Critical CSS loaded synchronously -->
 			@templ.Raw(criticalCSS)
 			// <link href="/static/gen.css" rel="stylesheet"/>
@@ -101,14 +103,36 @@ templ BaseComponent(headContent string, title string, showHeader bool) {
     </style>
 		</head>
 		<body
-			x-data="{ curtain: true }"
-			x-init="setTimeout(() => curtain = false, 50)"
 			hx-ext="preload"
-			class="relative isolate min-h-screen min-w-screen bg-surface dark:bg-surface-dark text-on-surface dark:text-on-surface-dark sample-transition"
+			class="antialiased"
+			x-data="{ currentPage: 'home', mobileMenuOpen: false }"
 		>
 			if showHeader {
 				@HeaderComponent()
 			}
+			<div class="animated-bg">
+				<div class="shape1"></div>
+				<div class="shape2"></div>
+				<div class="shape3"></div>
+			</div>
+			<div class="ticker-overlay">
+				<template x-for="i in 12" :key="i">
+					<div class="ticker-row">
+						<div class="ticker-track">
+							<template x-for="j in 2" :key="j">
+								<div class="flex items-center">
+									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientA" alt="Client A" class="ticker-item"/>
+									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientB" alt="Client B" class="ticker-item"/>
+									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientC" alt="Client C" class="ticker-item"/>
+									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientD" alt="Client D" class="ticker-item"/>
+									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientE" alt="Client E" class="ticker-item"/>
+									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientF" alt="Client F" class="ticker-item"/>
+								</div>
+							</template>
+						</div>
+					</div>
+				</template>
+			</div>
 			{ children... }
 		</body>
 	</html>

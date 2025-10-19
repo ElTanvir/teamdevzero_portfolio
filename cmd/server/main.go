@@ -3,7 +3,6 @@ package main
 import (
 	"os"
 	"portfolioed/internal/config"
-	"portfolioed/internal/modules/menu"
 	"portfolioed/internal/modules/root"
 	"portfolioed/internal/server"
 	"portfolioed/util"
@@ -23,6 +22,5 @@ func main() {
 		log.Fatal().Err(err).Msg("failed to create server")
 	}
 	root.Init(app)
-	menu.Init(app)
 	log.Fatal().Err(app.Start()).Msg("failed to start server")
 }
