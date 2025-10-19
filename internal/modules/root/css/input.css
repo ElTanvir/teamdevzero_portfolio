@@ -42,7 +42,7 @@
 @layer base {
   html {
     scroll-behavior: smooth;
-    scrollbar-gutter: stable;
+    scrollbar-gutter: none;
     overflow: hidden;
   }
 

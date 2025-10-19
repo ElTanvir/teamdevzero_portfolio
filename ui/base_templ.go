@@ -33,6 +33,7 @@ func BaseComponent(headContent string, title string, showHeader bool) templ.Comp
 		ctx = templ.ClearChildren(ctx)
 
 		var criticalCSS = store.CriticalCSS
+		var generalCSS = store.GenCss
 		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 1, "<!doctype html><html lang=\"en\" class=\"dark\"><head><meta charset=\"UTF-8\"><meta name=\"viewport\" content=\"width=device-width, initial-scale=1.0\"><meta name=\"view-transition\" content=\"same-origin\"><link rel=\"preconnect\" href=\"https://cdn.jsdelivr.net\" crossorigin><link rel=\"preconnect\" href=\"https://fonts.googleapis.com\"><link rel=\"preconnect\" href=\"https://fonts.gstatic.com\" crossorigin><link href=\"https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono&display=swap\" rel=\"stylesheet\"><!-- Critical CSS loaded synchronously -->")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
@@ -41,14 +42,18 @@ func BaseComponent(headContent string, title string, showHeader bool) templ.Comp
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<link href=\"/static/styles.css\" rel=\"stylesheet\"><link rel=\"icon\" href=\"/static/favicon.ico\"><!--Fonts--><!-- HTMX Core - loaded immediately --><script defer src=\"https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js\"></script><script defer src=\"https://cdn.jsdelivr.net/npm/htmx-ext-preload@2.1.0\"></script><script>\n\t\t\t\tdocument.addEventListener('htmx:load', function() {\n\t\t\t\t\thtmx.config.globalViewTransitions = true\n\t\t\t\t});\n\t\t\t</script><!-- Alpine.js ecosystem - deferred --><script defer src=\"https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js\"></script><script defer src=\"https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js\"></script><script defer src=\"https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js\"></script><script defer src=\"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js\"></script><title>")
+		templ_7745c5c3_Err = templ.Raw(generalCSS).Render(ctx, templ_7745c5c3_Buffer)
+		if templ_7745c5c3_Err != nil {
+			return templ_7745c5c3_Err
+		}
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 2, "<link rel=\"icon\" href=\"/static/favicon.ico\"><!--Fonts--><!-- HTMX Core - loaded immediately --><!-- Alpine.js ecosystem - deferred --><script defer src=\"https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js\"></script><script defer src=\"https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js\"></script><script defer src=\"https://cdn.jsdelivr.net/npm/@alpinejs/collapse@3.x.x/dist/cdn.min.js\"></script><script defer src=\"https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js\"></script><title>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
 		var templ_7745c5c3_Var2 string
 		templ_7745c5c3_Var2, templ_7745c5c3_Err = templ.JoinStringErrs(title)
 		if templ_7745c5c3_Err != nil {
-			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/base.templ`, Line: 40, Col: 17}
+			return templ.Error{Err: templ_7745c5c3_Err, FileName: `ui/base.templ`, Line: 42, Col: 17}
 		}
 		_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString(templ.EscapeString(templ_7745c5c3_Var2))
 		if templ_7745c5c3_Err != nil {
@@ -62,7 +67,7 @@ func BaseComponent(headContent string, title string, showHeader bool) templ.Comp
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<!-- Simple performance monitoring --><style>\n\t\t.htmx-indicator {\n\t\t\tdisplay: none;\n\t\t}\n\n\t\t.htmx-request .htmx-indicator {\n\t\t\tdisplay: inline;\n\t\t}\n\n\t\t.htmx-request.htmx-indicator {\n\t\t\tdisplay: inline;\n\t\t}\n\n\t\t/* Optimize transitions for better perceived performance */\n\t\t.htmx-swapping {\n\t\t\topacity: 0;\n\t\t}\n\n\t\t.htmx-settling {\n\t\t\topacity: 1;\n\t\t\ttransition: opacity 100ms ease-out;\n\t\t}\n\n\t\t/* Preload hover states */\n\t\t[hx-preload]:hover {\n\t\t\tcursor: pointer;\n\t\t}\n\t</style><style>\n       @keyframes fade-in {\n         from { opacity: 0; }\n       }\n    \n       @keyframes fade-out {\n         to { opacity: 0; }\n       }\n    \n       @keyframes slide-from-right {\n         from { transform: translateX(400px); }\n       }\n    \n       @keyframes slide-to-left {\n         to { transform: translateX(-400px); }\n       }\n    \n       /* define animations for the old and new content */\n       ::view-transition-old(slide-it) {\n         animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,\n         600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;\n       }\n       ::view-transition-new(slide-it) {\n         animation: 420ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,\n         600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;\n       }\n    \n       /* tie the view transition to a given CSS class */\n       .sample-transition {\n           view-transition-name: slide-it;\n       }\n        \n    </style></head><body hx-ext=\"preload\" class=\"antialiased\" x-data=\"{ currentPage: 'home', mobileMenuOpen: false }\">")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 4, "<!-- Simple performance monitoring --><style>\n       @keyframes fade-in {\n         from { opacity: 0; }\n       }\n    \n       @keyframes fade-out {\n         to { opacity: 0; }\n       }\n    \n       @keyframes slide-from-right {\n         from { transform: translateX(400px); }\n       }\n    \n       @keyframes slide-to-left {\n         to { transform: translateX(-400px); }\n       }\n    \n       /* define animations for the old and new content */\n       ::view-transition-old(slide-it) {\n         animation: 180ms cubic-bezier(0.4, 0, 1, 1) both fade-out,\n         600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-to-left;\n       }\n       ::view-transition-new(slide-it) {\n         animation: 420ms cubic-bezier(0, 0, 0.2, 1) 90ms both fade-in,\n         600ms cubic-bezier(0.4, 0, 0.2, 1) both slide-from-right;\n       }\n    \n       /* tie the view transition to a given CSS class */\n       .sample-transition {\n           view-transition-name: slide-it;\n       }\n        \n    </style></head><body hx-ext=\"preload\" class=\"antialiased\" x-data=\"{ currentPage: 'home', mobileMenuOpen: false }\">")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}
@@ -72,7 +77,7 @@ func BaseComponent(headContent string, title string, showHeader bool) templ.Comp
 				return templ_7745c5c3_Err
 			}
 		}
-		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"animated-bg\"><div class=\"shape1\"></div><div class=\"shape2\"></div><div class=\"shape3\"></div></div><div class=\"ticker-overlay\"><template x-for=\"i in 12\" :key=\"i\"><div class=\"ticker-row\"><div class=\"ticker-track\"><template x-for=\"j in 2\" :key=\"j\"><div class=\"flex items-center\"><img src=\"https://placehold.co/150x60/0D0C14/ffffff?text=ClientA\" alt=\"Client A\" class=\"ticker-item\"> <img src=\"https://placehold.co/150x60/0D0C14/ffffff?text=ClientB\" alt=\"Client B\" class=\"ticker-item\"> <img src=\"https://placehold.co/150x60/0D0C14/ffffff?text=ClientC\" alt=\"Client C\" class=\"ticker-item\"> <img src=\"https://placehold.co/150x60/0D0C14/ffffff?text=ClientD\" alt=\"Client D\" class=\"ticker-item\"> <img src=\"https://placehold.co/150x60/0D0C14/ffffff?text=ClientE\" alt=\"Client E\" class=\"ticker-item\"> <img src=\"https://placehold.co/150x60/0D0C14/ffffff?text=ClientF\" alt=\"Client F\" class=\"ticker-item\"></div></template></div></div></template></div>")
+		templ_7745c5c3_Err = templruntime.WriteString(templ_7745c5c3_Buffer, 5, "<div class=\"animated-bg\"><div class=\"shape1\"></div><div class=\"shape2\"></div><div class=\"shape3\"></div></div><div class=\"ticker-overlay\"><template x-for=\"i in 12\" :key=\"i\"><div class=\"ticker-row\"><div class=\"ticker-track\"><template x-for=\"j in 2\" :key=\"j\"><div class=\"flex items-center\"><img height=\"60\" width=\"150\" src=\"/static/img/concordlogo.webp\" alt=\"Concord\" class=\"ticker-item\"> <img height=\"60\" width=\"150\" src=\"/static/img/payvill-logo.webp\" alt=\"Payvill\" class=\"ticker-item\"> <img height=\"60\" width=\"150\" src=\"/static/img/ironman_logo.svg\" alt=\"The Ironman\" class=\"ticker-item\"> <img height=\"60\" width=\"150\" src=\"/static/img/loop_logo.webp\" alt=\"Loop\" class=\"ticker-item\"></div></template></div></div></template></div>")
 		if templ_7745c5c3_Err != nil {
 			return templ_7745c5c3_Err
 		}

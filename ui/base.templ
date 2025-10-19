@@ -5,6 +5,7 @@ import "portfolioed/internal/store"
 templ BaseComponent(headContent string, title string, showHeader bool) {
 	{{
 		var criticalCSS = store.CriticalCSS
+		var generalCSS = store.GenCss
 	}}
 	<!DOCTYPE html>
 	<html lang="en" class="dark">
@@ -18,20 +19,21 @@ templ BaseComponent(headContent string, title string, showHeader bool) {
 			<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@700;900&family=Space+Mono&display=swap" rel="stylesheet"/>
 			<!-- Critical CSS loaded synchronously -->
 			@templ.Raw(criticalCSS)
+			@templ.Raw(generalCSS)
 			// <link href="/static/gen.css" rel="stylesheet"/>
-			<link href="/static/styles.css" rel="stylesheet"/>
+			// <link href="/static/styles.css" rel="stylesheet"/>
 			// <link rel="stylesheet" href="/static/styles.css" media="print" onload="this.media='all'"/>
 			// <noscript><link rel="stylesheet" href="/static/styles.css"/></noscript>
 			<link rel="icon" href="/static/favicon.ico"/>
 			<!--Fonts-->
 			<!-- HTMX Core - loaded immediately -->
-			<script defer src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
-			<script defer src="https://cdn.jsdelivr.net/npm/htmx-ext-preload@2.1.0"></script>
-			<script>
-				document.addEventListener('htmx:load', function() {
-					htmx.config.globalViewTransitions = true
-				});
-			</script>
+			// <script defer src="https://cdn.jsdelivr.net/npm/htmx.org@2.0.6/dist/htmx.min.js"></script>
+			// <script defer src="https://cdn.jsdelivr.net/npm/htmx-ext-preload@2.1.0"></script>
+			// <script>
+			// 	document.addEventListener('htmx:load', function() {
+			// 		htmx.config.globalViewTransitions = true
+			// 	});
+			// </script>
 			<!-- Alpine.js ecosystem - deferred -->
 			<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/intersect@3.x.x/dist/cdn.min.js"></script>
 			<script defer src="https://cdn.jsdelivr.net/npm/@alpinejs/focus@3.x.x/dist/cdn.min.js"></script>
@@ -40,34 +42,6 @@ templ BaseComponent(headContent string, title string, showHeader bool) {
 			<title>{ title }</title>
 			@templ.Raw(headContent)
 			<!-- Simple performance monitoring -->
-			<style>
-		.htmx-indicator {
-			display: none;
-		}
-
-		.htmx-request .htmx-indicator {
-			display: inline;
-		}
-
-		.htmx-request.htmx-indicator {
-			display: inline;
-		}
-
-		/* Optimize transitions for better perceived performance */
-		.htmx-swapping {
-			opacity: 0;
-		}
-
-		.htmx-settling {
-			opacity: 1;
-			transition: opacity 100ms ease-out;
-		}
-
-		/* Preload hover states */
-		[hx-preload]:hover {
-			cursor: pointer;
-		}
-	</style>
 			<style>
        @keyframes fade-in {
          from { opacity: 0; }
@@ -121,12 +95,10 @@ templ BaseComponent(headContent string, title string, showHeader bool) {
 						<div class="ticker-track">
 							<template x-for="j in 2" :key="j">
 								<div class="flex items-center">
-									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientA" alt="Client A" class="ticker-item"/>
-									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientB" alt="Client B" class="ticker-item"/>
-									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientC" alt="Client C" class="ticker-item"/>
-									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientD" alt="Client D" class="ticker-item"/>
-									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientE" alt="Client E" class="ticker-item"/>
-									<img src="https://placehold.co/150x60/0D0C14/ffffff?text=ClientF" alt="Client F" class="ticker-item"/>
+									<img height="60" width="150" src="/static/img/concordlogo.webp" alt="Concord" class="ticker-item"/>
+									<img height="60" width="150" src="/static/img/payvill-logo.webp" alt="Payvill" class="ticker-item"/>
+									<img height="60" width="150" src="/static/img/ironman_logo.svg" alt="The Ironman" class="ticker-item"/>
+									<img height="60" width="150" src="/static/img/loop_logo.webp" alt="Loop" class="ticker-item"/>
 								</div>
 							</template>
 						</div>

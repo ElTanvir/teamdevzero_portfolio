@@ -9,12 +9,12 @@ templ HomePage() {
 			<div
 				x-show="currentPage === 'home'"
 				class="page-container"
-				x-transition:enter="transition ease-out duration-700"
-				x-transition:enter-start="opacity-0 rotate-y-90"
-				x-transition:enter-end="opacity-100 rotate-y-0"
-				x-transition:leave="transition ease-in duration-500"
-				x-transition:leave-start="opacity-100 rotate-y-0"
-				x-transition:leave-end="opacity-0 -rotate-y-90"
+				x-transition:enter="transition ease-out duration-500"
+				x-transition:enter-start="opacity-0 scale-95"
+				x-transition:enter-end="opacity-100 scale-100"
+				x-transition:leave="transition ease-in duration-300"
+				x-transition:leave-start="opacity-100 scale-100"
+				x-transition:leave-end="opacity-0 scale-95"
 			>
 				<div class="flex-grow flex flex-col items-center justify-center">
 					<div class="text-center w-full max-w-4xl mx-auto px-4 mb-16">
@@ -32,11 +32,10 @@ templ HomePage() {
 								<div class="ticker-track">
 									<template x-for="k in 2" :key="k">
 										<div class="flex items-center">
-											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientA" alt="Client A" class="ticker-item"/>
-											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientB" alt="Client B" class="ticker-item"/>
-											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientC" alt="Client C" class="ticker-item"/>
-											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientD" alt="Client D" class="ticker-item"/>
-											<img src="https://placehold.co/150x50/0D0C14/ffffff?text=ClientE" alt="Client E" class="ticker-item"/>
+											<img height="50" width="150" src="/static/img/concordlogo.webp" alt="Client A" class="ticker-item"/>
+											<img height="50" width="150" src="/static/img/payvill-logo.webp" alt="Payvill" class="ticker-item"/>
+											<img height="50" width="150" src="/static/img/ironman_logo.svg" alt="The Ironman" class="ticker-item"/>
+											<img height="50" width="150" src="/static/img/loop_logo.webp" alt="Loop" class="ticker-item"/>
 										</div>
 									</template>
 								</div>
@@ -72,12 +71,12 @@ templ HomePage() {
                 }
              }"
 				x-init="autoplay()"
-				x-transition:enter="transition ease-out duration-700"
-				x-transition:enter-start="opacity-0 rotate-y-90"
-				x-transition:enter-end="opacity-100 rotate-y-0"
-				x-transition:leave="transition ease-in duration-500"
-				x-transition:leave-start="opacity-100 rotate-y-0"
-				x-transition:leave-end="opacity-0 -rotate-y-90"
+				x-transition:enter="transition ease-out duration-500"
+				x-transition:enter-start="opacity-0 scale-95"
+				x-transition:enter-end="opacity-100 scale-100"
+				x-transition:leave="transition ease-in duration-300"
+				x-transition:leave-start="opacity-100 scale-100"
+				x-transition:leave-end="opacity-0 scale-95"
 			>
 				<template x-for="(service, index) in services" :key="index">
 					<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
@@ -119,12 +118,12 @@ templ HomePage() {
                 }
              }"
 				x-init="autoplay()"
-				x-transition:enter="transition ease-out duration-700"
-				x-transition:enter-start="opacity-0 rotate-y-90"
-				x-transition:enter-end="opacity-100 rotate-y-0"
-				x-transition:leave="transition ease-in duration-500"
-				x-transition:leave-start="opacity-100 rotate-y-0"
-				x-transition:leave-end="opacity-0 -rotate-y-90"
+				x-transition:enter="transition ease-out duration-500"
+				x-transition:enter-start="opacity-0 scale-95"
+				x-transition:enter-end="opacity-100 scale-100"
+				x-transition:leave="transition ease-in duration-300"
+				x-transition:leave-start="opacity-100 scale-100"
+				x-transition:leave-end="opacity-0 scale-95"
 			>
 				<template x-for="(member, index) in team" :key="index">
 					<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
@@ -165,12 +164,12 @@ templ HomePage() {
                 }
              }"
 				x-init="autoplay()"
-				x-transition:enter="transition ease-out duration-700"
-				x-transition:enter-start="opacity-0 rotate-y-90"
-				x-transition:enter-end="opacity-100 rotate-y-0"
-				x-transition:leave="transition ease-in duration-500"
-				x-transition:leave-start="opacity-100 rotate-y-0"
-				x-transition:leave-end="opacity-0 -rotate-y-90"
+				x-transition:enter="transition ease-out duration-500"
+				x-transition:enter-start="opacity-0 scale-95"
+				x-transition:enter-end="opacity-100 scale-100"
+				x-transition:leave="transition ease-in duration-300"
+				x-transition:leave-start="opacity-100 scale-100"
+				x-transition:leave-end="opacity-0 scale-95"
 			>
 				<template x-for="(project, index) in projects" :key="index">
 					<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
@@ -197,12 +196,12 @@ templ HomePage() {
 			<div
 				x-show="currentPage === 'contact'"
 				class="page-container"
-				x-transition:enter="transition ease-out duration-700"
-				x-transition:enter-start="opacity-0 rotate-y-90"
-				x-transition:enter-end="opacity-100 rotate-y-0"
-				x-transition:leave="transition ease-in duration-500"
-				x-transition:leave-start="opacity-100 rotate-y-0"
-				x-transition:leave-end="opacity-0 -rotate-y-90"
+				x-transition:enter="transition ease-out duration-500"
+				x-transition:enter-start="opacity-0 scale-95"
+				x-transition:enter-end="opacity-100 scale-100"
+				x-transition:leave="transition ease-in duration-300"
+				x-transition:leave-start="opacity-100 scale-100"
+				x-transition:leave-end="opacity-0 scale-95"
 			>
 				<div class="flex-grow flex items-center justify-center text-center px-4">
 					<div class="max-w-3xl">
