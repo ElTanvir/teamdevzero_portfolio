@@ -96,53 +96,53 @@ templ HomePage() {
 					</template>
 				</div>
 			</div>
-			<!-- TEAM SLIDER -->
-			<div
-				x-show="currentPage === 'team'"
-				class="page-container"
-				x-data="{ 
-                currentSlide: 0, 
-                team: [
-                    { name: 'Alex Johnson', title: 'Lead Go/Flutter Developer', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=A' },
-                    { name: 'Jane Doe', title: 'Senior Frontend Engineer', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=J' },
-                    { name: 'Sam Wilson', title: 'Backend Specialist', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=S' }
-                ],
-                autoplay() {
-                    let timer = setInterval(() => {
-                        this.currentSlide = (this.currentSlide + 1) % this.team.length;
-                    }, 5000);
-                    $watch('currentSlide', () => {
-                        clearInterval(timer);
-                        timer = setInterval(() => { this.currentSlide = (this.currentSlide + 1) % this.team.length; }, 5000);
-                    });
-                }
-             }"
-				x-init="autoplay()"
-				x-transition:enter="transition ease-out duration-500"
-				x-transition:enter-start="opacity-0 scale-95"
-				x-transition:enter-end="opacity-100 scale-100"
-				x-transition:leave="transition ease-in duration-300"
-				x-transition:leave-start="opacity-100 scale-100"
-				x-transition:leave-end="opacity-0 scale-95"
-			>
-				<template x-for="(member, index) in team" :key="index">
-					<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
-						<div class="text-center">
-							<img :src="member.img" :alt="member.name" class="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto mb-8 border-4 border-outline-dark shadow-2xl"/>
-							<h2 class="text-4xl md:text-5xl font-black" x-text="member.name"></h2>
-							<p class="text-xl text-primary-dark" x-text="member.title"></p>
-						</div>
-					</div>
-				</template>
-				<div class="tab-nav">
-					<template x-for="(member, index) in team" :key="index">
-						<button @click="currentSlide = index" class="tab-nav-item" :class="{'active': currentSlide === index}">
-							<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
-							<span x-text="member.name"></span>
-						</button>
-					</template>
-				</div>
-			</div>
+			// <!-- TEAM SLIDER -->
+			// <div
+			// 	x-show="currentPage === 'team'"
+			// 	class="page-container"
+			// 	x-data="{ 
+			//     currentSlide: 0, 
+			//     team: [
+			//         { name: 'Alex Johnson', title: 'Lead Go/Flutter Developer', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=A' },
+			//         { name: 'Jane Doe', title: 'Senior Frontend Engineer', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=J' },
+			//         { name: 'Sam Wilson', title: 'Backend Specialist', img: 'https://placehold.co/400x400/1a1a1a/e5e5e5?text=S' }
+			//     ],
+			//     autoplay() {
+			//         let timer = setInterval(() => {
+			//             this.currentSlide = (this.currentSlide + 1) % this.team.length;
+			//         }, 5000);
+			//         $watch('currentSlide', () => {
+			//             clearInterval(timer);
+			//             timer = setInterval(() => { this.currentSlide = (this.currentSlide + 1) % this.team.length; }, 5000);
+			//         });
+			//     }
+			//  }"
+			// 	x-init="autoplay()"
+			// 	x-transition:enter="transition ease-out duration-500"
+			// 	x-transition:enter-start="opacity-0 scale-95"
+			// 	x-transition:enter-end="opacity-100 scale-100"
+			// 	x-transition:leave="transition ease-in duration-300"
+			// 	x-transition:leave-start="opacity-100 scale-100"
+			// 	x-transition:leave-end="opacity-0 scale-95"
+			// >
+			// 	<template x-for="(member, index) in team" :key="index">
+			// 		<div x-show="currentSlide === index" class="slide" x-transition:enter="transition ease-in-out duration-700" x-transition:enter-start="opacity-0 scale-95" x-transition:enter-end="opacity-100 scale-100" x-transition:leave="transition ease-in-out duration-500" x-transition:leave-start="opacity-100 scale-100" x-transition:leave-end="opacity-0 scale-95">
+			// 			<div class="text-center">
+			// 				<img :src="member.img" :alt="member.name" class="w-48 h-48 md:w-64 md:h-64 rounded-full mx-auto mb-8 border-4 border-outline-dark shadow-2xl"/>
+			// 				<h2 class="text-4xl md:text-5xl font-black" x-text="member.name"></h2>
+			// 				<p class="text-xl text-primary-dark" x-text="member.title"></p>
+			// 			</div>
+			// 		</div>
+			// 	</template>
+			// 	<div class="tab-nav">
+			// 		<template x-for="(member, index) in team" :key="index">
+			// 			<button @click="currentSlide = index" class="tab-nav-item" :class="{'active': currentSlide === index}">
+			// 				<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
+			// 				<span x-text="member.name"></span>
+			// 			</button>
+			// 		</template>
+			// 	</div>
+			// </div>
 			<!-- WORK SLIDER -->
 			<div
 				x-show="currentPage === 'work'"
@@ -150,8 +150,8 @@ templ HomePage() {
 				x-data="{ 
                 currentSlide: 0, 
                 projects: [
-                    { name: 'Fintech App', desc: 'A secure Flutter application for personal finance management.', tech: 'Flutter & Go', img: 'https://placehold.co/800x600/111111/ffffff?text=Project+One' },
-                    { name: 'E-commerce', desc: 'A high-traffic online store built with Next.js for superior performance.', tech: 'Next.js & Node.js', img: 'https://placehold.co/800x600/111111/ffffff?text=Project+Two' }
+                    { name: 'Fantasy Kingdom', desc: 'Fantasy Kingdom Mobile App', tech: 'Flutter', img: '/static/img/fantasy_kingdom.webp' },
+                    { name: 'Nectar Beezness - ERP', desc: 'High Performance ERP for Businesses', tech: 'Flutter', img: '/static/img/nectar_beeznerss.webp' }
                 ],
                 autoplay() {
                     let timer = setInterval(() => {
@@ -207,9 +207,9 @@ templ HomePage() {
 					<div class="max-w-3xl">
 						<h2 class="text-5xl md:text-7xl font-black">Have a project in mind?</h2>
 						<p class="text-lg mt-4 mb-8 text-on-surface-dark">Let's build something amazing together. Reach out and we'll get back to you within 24 hours.</p>
-						<a href="mailto:contact@teamdevzero.com" class="cta-button px-12 py-5 text-xl inline-block">
+						<a href="mailto:contact@bizbundl.com" class="cta-button px-12 py-5 text-xl inline-block">
 							<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
-							<span class="cta-button-text">contact@teamdevzero.com</span>
+							<span class="cta-button-text">contact@bizbundl.com</span>
 						</a>
 					</div>
 				</div>

@@ -9,12 +9,12 @@ type NavItem struct {
 templ HeaderComponent() {
 	<header class="fixed top-0 left-0 w-full z-20 py-6 px-4 sm:px-6 lg:px-8 bg-transparent">
 		<div class="container mx-auto flex justify-between items-center">
-			<img src="/static/img/tdz_logo.webp" alt="TeamDevZero Logo" class="h-10 cursor-pointer" @click.prevent="currentPage = 'home'"/>
+			<img src="/static/img/tdz_logo.webp" alt="BizBundl Logo" class="h-10 cursor-pointer" @click.prevent="currentPage = 'home'"/>
 			<nav class="hidden md:flex space-x-10 items-center">
 				<a href="#" @click.prevent="currentPage = 'home'" :class="{'text-white': currentPage === 'home', 'text-gray-400': currentPage !== 'home'}" class="hover:text-white transition-colors nav-link">Home</a>
 				<a href="#" @click.prevent="currentPage = 'services'" :class="{'text-white': currentPage === 'services', 'text-gray-400': currentPage !== 'services'}" class="hover:text-white transition-colors nav-link">Services</a>
 				<a href="#" @click.prevent="currentPage = 'work'" :class="{'text-white': currentPage === 'work', 'text-gray-400': currentPage !== 'work'}" class="hover:text-white transition-colors nav-link">Work</a>
-				<a href="#" @click.prevent="currentPage = 'team'" :class="{'text-white': currentPage === 'team', 'text-gray-400': currentPage !== 'team'}" class="hover:text-white transition-colors nav-link">Team</a>
+				// <a href="#" @click.prevent="currentPage = 'team'" :class="{'text-white': currentPage === 'team', 'text-gray-400': currentPage !== 'team'}" class="hover:text-white transition-colors nav-link">Team</a>
 			</nav>
 			<a href="#" @click.prevent="currentPage = 'contact'" class="hidden md:block cta-button px-6 py-2">
 				<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
@@ -31,7 +31,7 @@ templ HeaderComponent() {
 			<a href="#" @click.prevent="currentPage = 'home'; mobileMenuOpen = false">Home</a>
 			<a href="#" @click.prevent="currentPage = 'services'; mobileMenuOpen = false">Services</a>
 			<a href="#" @click.prevent="currentPage = 'work'; mobileMenuOpen = false">Work</a>
-			<a href="#" @click.prevent="currentPage = 'team'; mobileMenuOpen = false">Team</a>
+			// <a href="#" @click.prevent="currentPage = 'team'; mobileMenuOpen = false">Team</a>
 			<a href="#" @click.prevent="currentPage = 'contact'; mobileMenuOpen = false" class="cta-button px-8 py-3">
 				<span class="border-span"></span><span class="border-span"></span><span class="border-span"></span><span class="border-span"></span>
 				<span class="cta-button-text">Get a Quote</span>
