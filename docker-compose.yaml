@@ -1,0 +1,16 @@
+services:
+  app:
+    build: .
+    container_name: test_website
+    environment:
+      - APP_PORT=8088
+      - APP_ENV=${APP_ENV}
+    networks:
+      - dokploy-network
+    labels:
+      - "traefik.http.middlewares.noop-headers.headers.customrequestheaders.X-No-Op=true"
+      - "traefik.http.routers.godemo-rest-hy6kue-98-websecure.middlewares=noop-headers@docker"
+
+networks:
+  dokploy-network:
+    external: true
