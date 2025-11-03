@@ -9,7 +9,11 @@ type NavItem struct {
 templ HeaderComponent() {
 	<header class="fixed top-0 left-0 w-full z-20 py-6 px-4 sm:px-6 lg:px-8 bg-transparent">
 		<div class="container mx-auto flex justify-between items-center">
-			<img src="/static/img/tdz_logo.webp" alt="BizBundl Logo" class="h-10 cursor-pointer" @click.prevent="currentPage = 'home'"/>
+			<div class="flex flex-row items-center gap-3">
+				<img src="/static/img/logo.webp" alt="BizBundl Logo" class="h-10 cursor-pointer" @click.prevent="currentPage = 'home'"/>
+				<div width="5px"></div>
+				<h2 class="px-2">Biz Bundl</h2>
+			</div>
 			<nav class="hidden md:flex space-x-10 items-center">
 				<a href="#" @click.prevent="currentPage = 'home'" :class="{'text-white': currentPage === 'home', 'text-gray-400': currentPage !== 'home'}" class="hover:text-white transition-colors nav-link">Home</a>
 				<a href="#" @click.prevent="currentPage = 'services'" :class="{'text-white': currentPage === 'services', 'text-gray-400': currentPage !== 'services'}" class="hover:text-white transition-colors nav-link">Services</a>
